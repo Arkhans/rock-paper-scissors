@@ -1,7 +1,7 @@
 // Basic game logic works. 
 // Need to: 
 // 1. make input case insensitive - easiest solution to convert all input to lowerCase?
-// 2. add a win/loss/tie counter - define variables and increment by 1 depending on result
+// 2. add a win/loss/tie counter - increment variables by 1 depending on result
 // 3. create loop for best of 5 - for/while?
 
 
@@ -16,8 +16,7 @@ let playerChoice = prompt("Choose your weapon!")
 
 
 // Game logic
-
-function game(playerChoice, computerChoice) {    
+function round(playerChoice, computerChoice) {    
     if(computerChoice === playerChoice) {
         return `You both chose ${playerChoice}! It's a tie.`;
     } else if(playerChoice === "Rock" && computerChoice === "Scissors") {
@@ -29,7 +28,7 @@ function game(playerChoice, computerChoice) {
     } else return `You lose! The computer chose ${computerChoice}.`;
 }
 
-console.log(game(playerChoice, computerChoice));
+console.log(round(playerChoice, computerChoice));
 
 
 
