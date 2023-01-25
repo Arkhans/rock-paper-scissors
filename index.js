@@ -1,6 +1,6 @@
 // Basic game logic works. 
 // Need to: 
-// 1. increment wins/loosess/ties in game()
+// 1. increment wins/losess/ties in game()
 // 2. def variable and return winner in gameRound()
 // 3. 
 
@@ -9,9 +9,8 @@
 let wins = 0;
 let losses = 0;
 let ties = 0;
-let result;
-let computerSelection = computerChoice();
-let playerSelection = playerChoice();
+let round = 0;
+
 
 
 function computerChoice() {
@@ -60,28 +59,28 @@ function scoreCounter(result) {
 
 // Game result
 function gameResult() {
-    if (ties > wins && losses) {
+    if (ties > wins && ties > losses) {
         alert("You've tied");
-    } else if (wins > ties && losses) {
+    } else if (wins > ties && wins > losses) {
         alert("You've won!");
     } else alert("You've lost!");
 }
 
 // Game function
 function game() {
-    for (let round = 0; round < 5; round++) {
-        let playerChoice = prompt("Choose your weapon!").toLowerCase();
-        computerChoice(choices);
-        result = gameRound(playerChoice, computerChoice);
+    for (let i = 0; i < 5; i++) {
+        let computerSelection = computerChoice();
+        let playerSelection = playerChoice();
+        result = gameRound(playerSelection, computerSelection);
         scoreCounter(result);
+        round++
         if (round == 5) {
             gameResult();
         }
     }
 }
 
-
-
+game();
 
 
 
