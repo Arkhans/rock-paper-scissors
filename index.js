@@ -1,34 +1,88 @@
 // Basic game logic works. 
 // Need to: 
-// 1. make input case insensitive - easiest solution to convert all input to lowerCase?
-// 2. add a win/loss/tie counter - increment variables by 1 depending on result
-// 3. create loop for best of 5 - for/while?
+// 1. increment wins/loosess/ties in game()
+// 2. def variable and return winner in gameRound()
+// 3. 
 
 
 // Constants and variables
-let wins = 0
-let losses = 0
-let ties = 0
-const choices = ["Rock", "Paper", "Scissors"]
-const random = Math.floor(Math.random() * choices.length)
-let computerChoice = choices[random];
-let playerChoice = prompt("Choose your weapon!")
+let wins = 0;
+let losses = 0;
+let ties = 0;
+let result;
+let computerSelection = computerChoice();
+let playerSelection = playerChoice();
 
 
-// Game logic
-function round(playerChoice, computerChoice) {    
-    if(computerChoice === playerChoice) {
-        return `You both chose ${playerChoice}! It's a tie.`;
-    } else if(playerChoice === "Rock" && computerChoice === "Scissors") {
-        return `You win! The computer chose ${computerChoice}.`;
-    } else if(playerChoice === "Paper" && computerChoice === "Rock") {
-        return `You win! The computer chose ${computerChoice}.`;
-    } else if(playerChoice === "Scissors" && computerChoice === "Paper") {
-        return `You win! The computer chose ${computerChoice}.`;
-    } else return `You lose! The computer chose ${computerChoice}.`;
+function computerChoice() {
+    const choices = ["rock", "paper", "scissors"];
+    return choices[Math.floor(Math.random() * choices.length)];
+}
+function playerChoice() {
+    return prompt("Choose your weapon!").toLowerCase();
 }
 
-console.log(round(playerChoice, computerChoice));
+
+// Game round
+function gameRound(playerSelection, computerSelection) {   
+    if(playerSelection === computerSelection) {
+        alert("It's a tie!");
+        return 'Tie';
+    } else if(playerSelection === "rock" && computerSelection === "scissors") {
+        alert("You win!");
+        return 'Victory';
+    } else if(playerSelection === "paper" && computerSelection === "rock") {
+        alert("You win!");
+        return 'Victory';
+    } else if(playerSelection === "scissors" && computerSelection === "paper") {
+        alert("You win!");
+        return 'Victory';
+    } else 
+        alert("You lose!");
+        return 'Defeat';
+}
+
+
+// Score counter
+function scoreCounter(result) {
+    switch (result) {
+        case 'Tie':
+            ties++;
+            break;
+        case 'Victory':
+            wins++;
+            break;
+        case 'Defeat':
+            losses++;
+            break;        
+    }
+}
+
+// Game result
+function gameResult() {
+    if (ties > wins && losses) {
+        alert("You've tied");
+    } else if (wins > ties && losses) {
+        alert("You've won!");
+    } else alert("You've lost!");
+}
+
+// Game function
+function game() {
+    for (let round = 0; round < 5; round++) {
+        let playerChoice = prompt("Choose your weapon!").toLowerCase();
+        computerChoice(choices);
+        result = gameRound(playerChoice, computerChoice);
+        scoreCounter(result);
+        if (round == 5) {
+            gameResult();
+        }
+    }
+}
+
+
+
+
 
 
 
