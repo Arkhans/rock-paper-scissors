@@ -1,26 +1,24 @@
-// Basic game logic works. 
-// Need to: 
-// 1. increment wins/losess/ties in game()
-// 2. def variable and return winner in gameRound()
-// 3. 
-
-
 // Constants and variables
 let wins = 0;
 let losses = 0;
 let ties = 0;
 let round = 0;
+const choices = ["rock", "paper", "scissors"];
 
-
-
+// Functions for player and computer choices
 function computerChoice() {
-    const choices = ["rock", "paper", "scissors"];
     return choices[Math.floor(Math.random() * choices.length)];
 }
 function playerChoice() {
-    return prompt("Choose your weapon!").toLowerCase();
+    let userInput = prompt("Choose you weapon!")
+    if(choices.includes(userInput)) {
+        return userInput.toLowerCase();
+    } else if (userInput == null) {
+        playerChoice();
+    } else  {
+        playerChoice();
+    }
 }
-
 
 // Game round
 function gameRound(playerSelection, computerSelection) {   
@@ -40,7 +38,6 @@ function gameRound(playerSelection, computerSelection) {
         alert("You lose!");
         return 'Defeat';
 }
-
 
 // Score counter
 function scoreCounter(result) {
@@ -66,7 +63,7 @@ function gameResult() {
     } else alert("You've lost!");
 }
 
-// Game function
+// Game
 function game() {
     for (let i = 0; i < 5; i++) {
         let computerSelection = computerChoice();
@@ -79,9 +76,3 @@ function game() {
         }
     }
 }
-
-game();
-
-
-
-
